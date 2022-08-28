@@ -20,6 +20,7 @@
 <script>
 import axios from "axios";
 export default {
+  emits: ["reloaded"],
   props: {
     id: {
       type: Number,
@@ -39,6 +40,7 @@ export default {
       axios
         .delete("/Filme/" + this.id)
         .then(() => {
+          this.$emit("reloaded");
           console.log("Filme deletado com sucesso!!");
         })
         .catch((error) => {

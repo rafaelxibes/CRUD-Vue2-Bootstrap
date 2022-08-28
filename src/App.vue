@@ -3,7 +3,7 @@
     <nav-bar />
     <router-view @myEvent="getId" />
     <messages-alert :show="alertMessage" />
-    <modal-alert :id="id" />
+    <modal-alert :id="id" @reloaded="showMessage" />
   </div>
 </template>
 
@@ -23,6 +23,12 @@ export default {
     getId(id) {
       this.id = id;
     },
+    showMessage() {
+      this.alertMessage = true;
+      setInterval(() => {
+        this.alertMessage = false;
+      }, 1800);
+    }
   },
 };
 </script>

@@ -8,40 +8,37 @@
       <div class="d-grid gap-2 d-md-flex justify-content-md-end p-2">
         <router-link role="button" class="btn btn-primary" to="/create">Adicionar novo filme</router-link>
       </div>
-
-      <table class="table table-hover">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nome do Filme</th>
-            <th scope="col">Diretor</th>
-            <th scope="col">Gênero</th>
-            <th scope="col">Duração</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody v-for="filme in filmes" :key="filme.id">
-          <tr>
-            <th scope="row">{{ filme.id }}</th>
-            <td>{{ filme.titulo }}</td>
-            <td>{{ filme.diretor }}</td>
-            <td>{{ filme.genero }}</td>
-            <td>{{ filme.duracao }} Minutos</td>
-            <td>
-              <div class="btn-group text-center" role="group">
-                <router-link role="button" class="btn btn-warning" :to="'/edit/' + filme.id">Editar</router-link>
-                <b-button v-b-modal.modal-1 class="btn btn-danger" @click="getId(filme.id)">Deletar</b-button>
-
-                <!-- <router-link
-                  role="button"
-                  class="btn btn-danger"
-                  :to="'/delete/' + filme.id"
-                >Deletar</router-link>-->
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <b-table
+        rounded
+        id="my-table"
+        :bordered="false"
+        :borderless="false"
+        :outlined="true"
+        :hover="true"
+        :caption-top="false"
+        :table-variant="'light'"
+        :head-variant="'light'"
+        :per-page="perPage"
+        :current-page="currentPage"
+        :items="filmes"
+        :fields="fields"
+      >
+        <template #cell(botoes)="data">
+          <div class="btn-group text-center" role="group">
+            <router-link role="button" class="btn btn-warning" :to="'/edit/' + data.item.id">Editar</router-link>
+            <b-button v-b-modal.modal-1 class="btn btn-danger" @click="getId(data.item.id)">Deletar</b-button>
+          </div>
+        </template>
+      </b-table>
+      <div class="d-flex justify-content-center">
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          
+          aria-controls="my-table"
+        ></b-pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -54,6 +51,9 @@ export default {
   data() {
     return {
       filmes: {},
+      perPage: 8,
+      currentPage: 1,
+      fields: ["id", "titulo", "diretor", "duracao", "botoes"],
     };
   },
   methods: {
@@ -69,6 +69,11 @@ export default {
     },
     getId(id) {
       this.$emit("myEvent", id);
+    },
+  },
+  computed: {
+    rows() {
+      return this.filmes.length;
     },
   },
   created() {
