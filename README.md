@@ -5,11 +5,11 @@
 https://github.com/rafaelxibes/CRUD-Filmes-ASP.NET-Core-REST-API.git
 ```
 
-## Or
-See [Configuration Reference API](https://github.com/rafaelxibes/CRUD-Filmes-ASP.NET-Core-REST-API).
+## Or Link
+See [API GIT](https://github.com/rafaelxibes/CRUD-Filmes-ASP.NET-Core-REST-API).
 
 ### Initial settings
-- **configurar API > vue.config.js > proxy:"YourAPI"
+- configurar API > vue.config.js > proxy:"YourAPI"
 
 ## Project setup
 ```
