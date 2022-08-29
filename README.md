@@ -1,4 +1,15 @@
-# crud-vue2
+# crud-vue2 + Bootstrap
+
+## API Utilizada (GitClone API)
+```
+https://github.com/rafaelxibes/CRUD-Filmes-ASP.NET-Core-REST-API.git
+```
+
+## Or
+See [Configuration Reference API](https://github.com/rafaelxibes/CRUD-Filmes-ASP.NET-Core-REST-API).
+
+### Initial settings
+- **configurar API > vue.config.js > proxy:"YourAPI"
 
 ## Project setup
 ```
@@ -19,6 +30,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
