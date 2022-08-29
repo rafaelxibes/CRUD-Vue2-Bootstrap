@@ -72,6 +72,7 @@
 import axios from "axios";
 export default {
   name: "EditFilmes",
+  emits: ["reloaded"],
   data() {
     return {
       filme: {},
@@ -94,7 +95,6 @@ export default {
         .put("/Filme/" + this.$route.params.id, this.filme)
         .then(function () {
           window.open('/', "_self");
-          console.log("Alterado com sucesso!");
         })
         .catch(function (error) {
           console.log(error);

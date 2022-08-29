@@ -12,13 +12,14 @@
             <span class="text-danger">*</span>
           </label>
           <input
+            required
             type="text"
             class="form-control"
             id="formInputTitulo"
             placeholder="Nome do filme"
             v-model="formulario.titulo"
           />
-          <div class="invalid-feedback">{{errosMsg}}</div>
+          <!-- <div class="invalid-feedback">{{errosMsg}}</div> -->
         </div>
         <div class="mb-3">
           <label for="formInputDirector" class="form-label">
@@ -81,7 +82,7 @@ export default {
         genero: "",
         duracao: null,
       },
-      errosMsg: {},
+      errorMsg: {},
     };
   },
   methods: {
@@ -89,10 +90,10 @@ export default {
       axios
         .post("/Filme", this.formulario)
         .then(function () {
-          window.open('/', "_self");
+          window.open("/", "_self");
         })
         .catch(function (error) {
-          console.log(error.response.data.errors);
+          console.log(error);
         });
     },
   },

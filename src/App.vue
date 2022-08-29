@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar />
-    <router-view @myEvent="getId" />
+    <router-view @myEvent="getId" @reloaded="showMessage" />
     <messages-alert :show="alertMessage" />
     <modal-alert :id="id" @reloaded="showMessage" />
   </div>
@@ -27,7 +27,10 @@ export default {
       this.alertMessage = true;
       setInterval(() => {
         this.alertMessage = false;
-      }, 1800);
+      }, 3800);
+    },
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     }
   },
 };

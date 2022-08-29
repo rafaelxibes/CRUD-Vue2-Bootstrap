@@ -23,7 +23,7 @@ export default {
   emits: ["reloaded"],
   props: {
     id: {
-      type: Number,
+      type: String,
       default: null,
     },
   },
@@ -41,7 +41,9 @@ export default {
         .delete("/Filme/" + this.id)
         .then(() => {
           this.$emit("reloaded");
-          console.log("Filme deletado com sucesso!!");
+          setInterval(() => {
+            window.open("/", "_self");
+          }, 1000);
         })
         .catch((error) => {
           console.log(error);
